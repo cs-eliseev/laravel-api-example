@@ -1,12 +1,12 @@
 <?php
 
-use App\Models\User;
+use App\Models\ActivityLog;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateActivityLogTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,18 +15,15 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        $model = new User();
+        $model = new ActivityLog();
 
         Schema::create($model->getTable(), function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 255)->comment('Имя полдьзователя');
-            $table->string('email')->unique()->comment('login/email пользователя');
-            $table->timestamp('email_verified_at')
-                ->nullable()
-                ->default(DB::raw('NULL ON UPDATE CURRENT_TIMESTAMP'))
-                ->comment('Подтверждение email пользователя');
-            $table->string('password')->comment('Пароль от учетной записи');
-            $table->rememberToken()->comment('Токен авторизации');
+            $table->unsignedBigInteger('user_id')->nullable()->comment('Данные пользователя');
+            $table->string('method')->nullable()->comment('Метод запроса');
+            $table->longText('route')->nullable()->comment('Маршрут запроса');
+            $table->ipAddress('ip')->nullable()->comment('IP адресс подключения');
+            $table->longText('description')->comment('Описание действия');
             $table->timestamp('created_at')->useCurrent()->comment('Время создания записи');
             $table->timestamp('updated_at')
                 ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
@@ -42,7 +39,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        $model = new User();
+        $model = new ActivityLog();
 
         Schema::dropIfExists($model->getTable());
     }

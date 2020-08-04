@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Config;
+namespace App\Configs;
 
 use App\Components\ResponseFormat\Exceptions\ResponseFormatExceptions;
 
@@ -13,7 +13,7 @@ use App\Components\ResponseFormat\Exceptions\ResponseFormatExceptions;
  */
 class ExceptionCodeConfig
 {
-    public const UNKNOWN_ERROR = 0;
+    public const UNKNOWN_ERROR                  = 0;
 
     public const RESPONSE_FORMAT_UNDEFINED_TYPE = ResponseFormatExceptions::UNDEFINED_TYPE;
 }

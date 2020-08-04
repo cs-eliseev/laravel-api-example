@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Config;
+namespace App\Configs;
 
 /**
  * Class ErrorConfig
@@ -11,6 +11,6 @@ namespace App\Config;
  */
 final class ErrorConfig
 {
-    public const LOCAL_BACK = 'en';
-    public const LOCAL_FRONT = 'ru';
+    public const LOCAL_BACK     = LangConfig::EN;
+    public const LOCAL_FRONT    = LangConfig::RU;
 }

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Helpers;
 
-use App\Config\ErrorConfig;
-use App\Config\ExceptionCodeConfig;
+use App\Configs\ErrorConfig;
+use App\Configs\ExceptionCodeConfig;
 use App\Exceptions\BaseExceptionInterface;
 use Illuminate\Support\Collection;
 use Throwable;
@@ -66,5 +66,23 @@ final class ErrorMessage
     public static function getDebugInfoByException(Throwable $exception): string
     {
         return "Exception message: [{$exception->getCode()}] {$exception->getMessage()}" . PHP_EOL . $exception->getTraceAsString();
+    }
+
+    /**
+     * Обработка сообщений об ошибке от валидатора.
+     *
+     * @param $errors
+     * @param $data
+     *
+     * @return string
+     */
+    public static function prepareValidateErrorMessage($errors, $data)
+    {
+        $errors = JsonHelper::decode(JsonHelper::encode($errors));
+        array_walk($errors, function (&$value, $key) use ($data) {
+            array_push($value, "Value: $data[$key]");
+        });
+
+        return JsonHelper::encode($errors);
     }
 }
