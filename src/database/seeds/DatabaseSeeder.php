@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Helpers\EnvHelpers;
 use Illuminate\Database\Seeder;
 
 final class DatabaseSeeder extends Seeder
@@ -13,6 +14,9 @@ final class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(UserSeeder::class);
+        if (!EnvHelpers::isProduction()) {
+            $this->call(UserSeeder::class);
+            $this->call(ClientSeeder::class);
+        }
     }
 }

@@ -18,16 +18,14 @@ use Laravel\Passport\Token;
  *
  * @description Пользователи.
  *
- * @property    int $id
- * @property    string $name
- * @property    string $email
- * @property    string $password
- * @property    Carbon $email_verified_at
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property Carbon $email_verified_at
  *
- * @method      Token token()
- *
- * @property    Token $token
- * @see         HasApiTokens::token()
+ * @method Token token()
+ * @see HasApiTokens::token()
  */
 final class User extends Authenticatable implements MustVerifyEmail
 {
