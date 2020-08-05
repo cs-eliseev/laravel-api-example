@@ -9,7 +9,7 @@ namespace App\Configs;
  *
  * @description Доступные языковые ресурсы.
  */
-class LangConfig
+final class LangConfig
 {
     public const EN = 'en';
     public const RU = 'ru';

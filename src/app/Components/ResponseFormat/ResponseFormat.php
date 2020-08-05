@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Components\ResponseFormat;
 
+use App\Components\ActivityLog\ActivityLogComponent;
 use App\Components\ResponseFormat\Handlers\ResponseFormatError;
 use App\Components\ResponseFormat\Handlers\ResponseFormatSuccess;
 use App\Components\ResponseFormat\Handlers\ResponseFormatTypeAdapter;
@@ -32,6 +33,12 @@ final class ResponseFormat
     public function __construct(ResponseFormatDto $dto)
     {
         $this->dto = $dto;
+
+        if (empty($this->dto->getId())) {
+
+            $activityLog = ActivityLogComponent::getModel();
+            $this->dto->setId(!empty($activityLog) ? $activityLog->id : 0);
+        }
     }
 
     /**

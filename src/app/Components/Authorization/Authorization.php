@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Components\Authorization;
 
+use App\Components\Authorization\Handlers\AuthorizationLogin;
+use App\Components\Authorization\Handlers\AuthorizationLogout;
 use App\Components\Authorization\Models\AuthorizationDto;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Class Authorization
@@ -15,9 +16,25 @@ use Illuminate\Support\Facades\Auth;
 final class Authorization
 {
     /**
+     * @var AuthorizationLogin $login
+     */
+    private AuthorizationLogin $login;
+
+    /**
+     * @var AuthorizationLogout $logout
+     */
+    private AuthorizationLogout $logout;
+
+    /**
      * @var string|null $token
      */
     private ?string $token = null;
+
+    public function __construct()
+    {
+        $this->login = new AuthorizationLogin();
+        $this->logout = new AuthorizationLogout();
+    }
 
     /**
      * Вход в систему.
@@ -28,18 +45,9 @@ final class Authorization
      */
     public function login(AuthorizationDto $dto): bool
     {
-        $credentials = [
-            'email' => $dto->getEmail(),
-            'password' => $dto->getPassword(),
-        ];
+        $this->token = $this->login->run($dto);
 
-        if(!Auth::attempt($credentials)) {
-            return false;
-        }
-
-        $this->token = Auth::user()->createToken('zserfvgy')->accessToken;
-
-        return true;
+        return !is_null($this->token);
     }
 
     /**
@@ -49,8 +57,7 @@ final class Authorization
      */
     public function logout(): bool
     {
-        logger("logout" . (Auth::user()->id ?? 0));
-        Auth::user()->token()->revoke();
+        $this->logout->run();
         $this->token = null;
 
         return true;

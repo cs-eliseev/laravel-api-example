@@ -39,15 +39,18 @@ final class ResponseFormatJson implements ResponseFormatTypeInterface
      */
     public function getSuccessData(): array
     {
-        $data = [
+        $result = [
+            'id' => $this->dto->getId(),
             'success' => ResponseStatusConfig::getSuccessCode($this->dto->isSuccess()),
         ];
 
-        if (!empty($this->dto->getData())) {
-            $data['data'] = $this->dto->getData();
+        $data = $this->dto->getData();
+
+        if (!empty($data)) {
+            $result['data'] = is_array($data) ? $data : ['message' => $data];
         }
 
-        return $data;
+        return $result;
     }
 
     /**
@@ -57,15 +60,16 @@ final class ResponseFormatJson implements ResponseFormatTypeInterface
      */
     public function getErrorData(): array
     {
-        $data = [
+        $result = [
+            'id' => $this->dto->getId(),
             'success' => ResponseStatusConfig::getSuccessCode($this->dto->isSuccess()),
             'message' => $this->dto->getData(),
         ];
 
         if (!empty($this->dto->getErrors())) {
-            $data['errors'] = $this->dto->getErrors();
+            $result['errors'] = $this->dto->getErrors();
         }
 
-        return $data;
+        return $result;
     }
 }

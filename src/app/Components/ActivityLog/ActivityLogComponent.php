@@ -16,10 +16,14 @@ use Request;
  * Class ActivityLog
  *
  * @description Журнал действий пользователя.
- *
  */
 final class ActivityLogComponent
 {
+    /**
+     * @var ActivityLog|null $activityLog
+     */
+    private static ?ActivityLog $activityLog = null;
+
     /**
      * Обработка активности.
      *
@@ -52,13 +56,34 @@ final class ActivityLogComponent
                 . ErrorMessage::prepareValidateErrorMessage($validator->errors(), $data)
             );
         } else {
-            $activity = new ActivityLog();
-            $activity->user_id = $data['user_id'];
-            $activity->method = $data['method'];
-            $activity->route = $data['route'];
-            $activity->ip = $data['ip'];
-            $activity->description = $data['description'];
-            $activity->save();
+            self::$activityLog = new ActivityLog();
+            self::$activityLog->user_id = $data['user_id'];
+            self::$activityLog->method = $data['method'];
+            self::$activityLog->route = $data['route'];
+            self::$activityLog->ip = $data['ip'];
+            self::$activityLog->description = $data['description'];
+            self::$activityLog->save();
+        }
+    }
+
+    /**
+     * Вернуть модель журнала действий пользователя.
+     *
+     * @return ActivityLog|null
+     */
+    public static function getModel(): ?ActivityLog
+    {
+        return self::$activityLog;
+    }
+
+    /**
+     * Вернуть модель журнала действий пользователя.
+     */
+    public static function updateUser(): void
+    {
+        if (!empty(Auth::user())) {
+            self::$activityLog->user()->associate(Auth::user());
+            self::$activityLog->save();
         }
     }
 }

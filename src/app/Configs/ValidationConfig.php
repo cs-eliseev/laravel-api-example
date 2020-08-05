@@ -9,7 +9,7 @@ namespace App\Configs;
  *
  * @description
  */
-class ValidationConfig
+final class ValidationConfig
 {
     public const AUTHORIZATION = [
         'login' => 'required|string|email',

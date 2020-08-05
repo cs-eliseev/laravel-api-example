@@ -35,6 +35,12 @@ return [
     */
 
     'channels' => [
+        'main' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/log.log'),
+            'days' => 0,
+        ],
+
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],

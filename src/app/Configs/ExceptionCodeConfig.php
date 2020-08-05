@@ -11,7 +11,7 @@ use App\Components\ResponseFormat\Exceptions\ResponseFormatExceptions;
  *
  * @description Коды ошибок.
  */
-class ExceptionCodeConfig
+final class ExceptionCodeConfig
 {
     public const UNKNOWN_ERROR                  = 0;
 

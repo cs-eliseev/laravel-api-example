@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Providers;
+namespace App\Components\ResponseFormat\Providers;
 
 use App\Components\ResponseFormat\Configs\ResponseFormatConfig;
 use App\Components\ResponseFormat\Models\ResponseFormatDto;
@@ -12,11 +12,20 @@ use Illuminate\Support\ServiceProvider;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class ResponseServiceProvider
+ * Class ResponseFormatServiceProvider
  *
- * @description
+ * @description Кастомный формат для респонса.
+ *
+ * @example config/app.php set provider:
+ *
+ * 'providers' => [
+ *     ...
+ *     \App\Components\ResponseFormat\Providers\ResponseFormatServiceProvider::class,
+ * ]
+ *
+ * @example response()->jsonFormat(false, 'ERROR', ['Validate error'], 422);
  */
-final class ResponseServiceProvider extends ServiceProvider
+final class ResponseFormatServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -31,6 +40,8 @@ final class ResponseServiceProvider extends ServiceProvider
             $errors = null,
             int $status = Response::HTTP_OK
         ) use ($factory) {
+            if (empty($data)) $data = Response::$statusTexts[$status] ?? null;
+
             $dto = new ResponseFormatDto($success, $data, $errors);
             $responseFormat = new ResponseFormat($dto);
 

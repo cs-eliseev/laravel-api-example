@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Middleware;
+namespace App\Components\ActivityLog\Middlewares;
 
 use App\Components\ActivityLog\ActivityLogComponent;
 use Closure;

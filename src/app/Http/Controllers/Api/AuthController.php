@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
+use App\Components\ActivityLog\ActivityLogComponent;
 use App\Components\Authorization\Authorization;
 use App\Http\Requests\AuthorizationRequest;
 use Illuminate\Http\JsonResponse;
@@ -14,7 +15,7 @@ use Illuminate\Http\Response;
  *
  * @description Обработка подключений пользователя.
  */
-class AuthController extends BaseController
+final class AuthController extends BaseController
 {
     /**
      * Вход в систему.
@@ -28,11 +29,13 @@ class AuthController extends BaseController
      */
     public function login(AuthorizationRequest $request, Authorization $authorization): JsonResponse
     {
-        $status = Response::HTTP_UNAUTHORIZED;
+        $status = Response::HTTP_BAD_REQUEST;
         $isSuccess = false;
-        $data = 'Unauthorized';
+        $data = 'Incorrect username or password.';
 
         if ($authorization->login($request->getDto())) {
+            ActivityLogComponent::updateUser();
+
             $status = Response::HTTP_OK;
             $isSuccess = true;
             $data = [

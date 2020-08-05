@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Laravel\Passport\Token;
 
 /**
  * Class User
@@ -17,11 +18,16 @@ use Laravel\Passport\HasApiTokens;
  *
  * @description Пользователи.
  *
- * @property int $id
- * @property string $name
- * @property string $email
- * @property string $password
- * @property Carbon $email_verified_at
+ * @property    int $id
+ * @property    string $name
+ * @property    string $email
+ * @property    string $password
+ * @property    Carbon $email_verified_at
+ *
+ * @method      Token token()
+ *
+ * @property    Token $token
+ * @see         HasApiTokens::token()
  */
 final class User extends Authenticatable implements MustVerifyEmail
 {

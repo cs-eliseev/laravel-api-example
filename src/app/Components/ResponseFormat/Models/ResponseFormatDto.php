@@ -12,6 +12,13 @@ namespace App\Components\ResponseFormat\Models;
 final class ResponseFormatDto
 {
     /**
+     * Идентификатор ответа.
+     *
+     * @var int|null $id
+     */
+    private ?int $id;
+
+    /**
      * Статус ответа.
      *
      * @var bool $success
@@ -36,14 +43,39 @@ final class ResponseFormatDto
      * ResponseFormatDto constructor.
      *
      * @param bool $success
-     * @param mixed $data
-     * @param mixed $errors
+     * @param null $data
+     * @param null $errors
+     * @param int|null $id
      */
-    public function __construct(bool $success, $data = null, $errors = null)
+    public function __construct(bool $success, $data = null, $errors = null, ?int $id = null)
     {
         $this->success = $success;
         $this->data = $data;
         $this->errors = $errors;
+        $this->id = $id;
+    }
+
+    /**
+     * Установить идентификатор ответа.
+     *
+     * @param int|null $id
+     *
+     * @return ResponseFormatDto
+     */
+    public function setId(?int $id): ResponseFormatDto
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * Получить идентификатор ответа.
+     *
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
     /**
