@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
  *
  * @description Обработчик запросов языкового пакетов.
  */
-class ActivityLogLangHelper
+final class ActivityLogLangHelper
 {
     /**
      * Получить описание по умолчанию.

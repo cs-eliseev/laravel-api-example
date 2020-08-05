@@ -29,7 +29,7 @@ final class ActivityLogComponent
      */
     public static function handler($description = null)
     {
-        $userId = Auth::check() ? Request::user()->id : null;
+        $userId = Auth::check() ? Auth::user()->id : null;
         $method = Request::method();
 
         if (is_null($description)) {

@@ -2,7 +2,11 @@
 
 namespace App\Exceptions;
 
+use App\Components\ResponseFormat\Models\ResponseFormatDto;
+use App\Components\ResponseFormat\ResponseFormat;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -50,6 +54,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        return parent::render($request, $exception);
+        return response()->jsonFormat(false, 'Not Found!', null, Response::HTTP_NOT_FOUND);
     }
 }

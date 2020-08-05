@@ -6,15 +6,22 @@ namespace App\Http\Middleware;
 
 use App\Components\ActivityLog\ActivityLogComponent;
 use Closure;
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Contracts\Auth\Guard;
 
 /**
  * Class ActivityLogMiddleware
  *
  * @description Обработка входящих запросов.
  */
-class ActivityLogMiddleware extends Middleware
+final class ActivityLogMiddleware
 {
+    protected $auth;
+
+    public function __construct(Guard $auth)
+    {
+        $this->auth = $auth;
+    }
+
     /**
      * Handle an incoming request.
      *

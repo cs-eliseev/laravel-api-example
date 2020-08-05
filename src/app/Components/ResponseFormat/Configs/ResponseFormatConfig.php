@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Components\ResponseFormat\Configs;
 
 use App\Components\ResponseFormat\Formats\ResponseFormatJson;

@@ -69,9 +69,9 @@ final class ResponseFormatDto
     /**
      * Получить ошибки ответа.
      *
-     * @return string
+     * @return mixed
      */
-    public function getErrors(): ?string
+    public function getErrors()
     {
         return $this->errors;
     }

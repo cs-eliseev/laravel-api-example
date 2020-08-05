@@ -34,24 +34,13 @@ abstract class BaseController extends Controller
      * @throws \Throwable
      */
     protected function response(
-        $data,
+        $data = null,
         bool $isSuccess = true,
         $errors = null,
         int $status = null
     ): JsonResponse {
-
         $status = $status ?? ($isSuccess ? Response::HTTP_OK : Response::HTTP_INTERNAL_SERVER_ERROR);
 
-        $responseFormat = new ResponseFormat(new ResponseFormatDto($isSuccess, $data, $errors));
-
-        return response()->json(
-            $responseFormat->getData(ResponseFormatConfig::JSON),
-            $status,
-            [
-                'Content-Type' => 'application/json;charset=UTF-8',
-                'Charset' => 'utf-8'
-            ],
-            JSON_UNESCAPED_UNICODE
-        );
+        return response()->jsonFormat($isSuccess, $data, $errors, $status);
     }
 }
