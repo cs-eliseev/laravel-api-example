@@ -17,7 +17,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api'], function() {
     Route::post('auth/login', 'AuthController@login')->name('login');
 
     Route::group(['middleware' => 'auth:api'], function() {
-        Route::get('auth/logout', 'AuthController@logout');
+        Route::get('auth/logout', 'AuthController@logout')->name('logout');
 
         Route::prefix('clients')->group(function() {
             Route::get('search', 'SearchController@index');

@@ -5,8 +5,14 @@
          colors="true"
 >
     <testsuites>
-        <testsuite name="Api">
-            <directory suffix="Test.php">./tests/Api</directory>
+        <testsuite name="Authorization">
+            <directory suffix="Test.php">./tests/Authorization</directory>
+        </testsuite>
+        <testsuite name="SearchService">
+            <directory suffix="Test.php">./tests/SearchService</directory>
+        </testsuite>
+        <testsuite name="ClientService">
+            <directory suffix="Test.php">./tests/ClientService</directory>
         </testsuite>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
@@ -15,6 +21,7 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./app/Services</directory>
+            <directory suffix=".php">./app/Components</directory>
         </whitelist>
     </filter>
     <logging>
