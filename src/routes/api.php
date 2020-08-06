@@ -20,13 +20,12 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api'], function() {
         Route::get('auth/logout', 'AuthController@logout');
 
         Route::prefix('clients')->group(function() {
-            Route::get('/', 'ClientController@index');
+            Route::get('search', 'SearchController@index');
+
             Route::post('/', 'ClientController@create');
             Route::get('/{id}', 'ClientController@read');
             Route::put('/{id}', 'ClientController@update');
             Route::delete('/{id}', 'ClientController@delete');
         });
-
-        Route::get('search', 'SearchController@index');
     });
 });

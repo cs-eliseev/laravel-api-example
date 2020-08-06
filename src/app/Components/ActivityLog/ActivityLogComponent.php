@@ -52,7 +52,7 @@ final class ActivityLogComponent
             'user_id'       => $userId,
             'method'        => $method,
             'route'         => Request::fullUrl(),
-            'extra'         => $param,
+            'extra'         => $param ?: null,
             'ip'            => Request::ip(),
         ];
 

@@ -31,7 +31,7 @@ final class AuthController extends BaseController
     {
         $status = Response::HTTP_BAD_REQUEST;
         $isSuccess = false;
-        $data = 'Incorrect username or password.';
+        $data = 'Incorrect username or password';
 
         if ($authorization->login($request->getDto())) {
             ActivityLogComponent::updateUser();

@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
-use App\Components\ActivityLog\ActivityLogComponent;
-use App\Components\Authorization\Authorization;
-use App\Http\Requests\AuthorizationRequest;
 use App\Http\Requests\ClientRequest;
 use App\Models\Client;
 use App\Services\ClientService\ClientService;

@@ -1,26 +1,26 @@
-English | [Русский](https://github.com/cs-eliseev/laravel-api-example/blob/master/src/README.ru_RU.md)
+[English](https://github.com/cs-eliseev/laravel-api-example/blob/master/src/README.md) | Русский
 
 LARAVEL API EXAMPLE
 =======
 
-## Documentation
+## Документация
 
-* [Laravel documentation](https://laravel.com/docs)
-* [Build project](https://github.com/cs-eliseev/laravel-api-example/blob/master/README.md)
+* [Документация Laravel](https://laravel.com/docs)
+* [Сборка проетка](https://github.com/cs-eliseev/laravel-api-example/blob/master/README.ru_RU.md)
 
-## Usage
+## Использование
 
 ### API
 
-Current version API 1.0.
+Текущая версия API 1.0.
 
-Base URL: `/api/v1`
+Базовый URL: `/api/v1`
 
-#### Authentication
+#### Аутентификация
 
-> POST `/api/v1/auth/login` Get token
+> POST `/api/v1/auth/login` Получение токена
 
-__Parameters__ `Body`
+__Парамерты__ `Body`
 ```json
 {
     "login": "test@example.net",
@@ -28,7 +28,7 @@ __Parameters__ `Body`
 }
 ```
 
-__Response__ `202`
+__Ответ__ `202`
 ```json
 {
     "id": 1,
@@ -39,7 +39,7 @@ __Response__ `202`
 }
 ```
 
-__Response__ `400`
+__Ответ__ `400`
 ```json
 {
     "id": 2,
@@ -48,7 +48,7 @@ __Response__ `400`
 }
 ```
 
-__Response__ `401`
+__Ответ__ `401`
 ```json
 {
     "id": 3,
@@ -56,13 +56,13 @@ __Response__ `401`
     "message": "Unauthorized",
     "errors": {
         "parameter": [
-            "Validation error message text"
+            "Текст сообщение ошибки валидации"
         ]
     }
 }
 ```
 
-__Response__ `500`
+__Ответ__ `500`
 ```json
 {
     "id": 4,
@@ -71,7 +71,7 @@ __Response__ `500`
 }
 ```
 
-In the future, you must pass the received `Bearer` token in the `Authorization` key of the request header:
+В дальнейшем вы должны передать полученный токен `Bearer` в ключе `Authorization` заголовка запроса:
 ```shell script
 curl --location --request GET '/api/v1/api_url' \
 --header 'Authorization: Bearer accessToken...' \
@@ -79,22 +79,22 @@ curl --location --request GET '/api/v1/api_url' \
 ...
 ```
 
-The token is valid for 15 days.
+Токен действителен в течении 15 дней.
 
-> GET `/api/v1/auth/logout` Revoke token
+> GET `/api/v1/auth/logout` Аннулирование токена
 
-__Parameters__ `Header`
+__Парамерты__ `Header`
 ```shell script
 curl --location --request GET '/api/v1/api_url' \
 --header 'Authorization: Bearer accessToken...'
 ```
 
-__Response__ `204`
+__Ответ__ `204`
 ```text
 NO_CONTENT
 ```
 
-__Response__ `401`
+__Ответ__ `401`
 ```json
 {
     "id": 5,
@@ -103,7 +103,7 @@ __Response__ `401`
 }
 ```
 
-__Response__ `404`
+__Ответ__ `404`
 ```json
 {
     "id": 6,
@@ -112,7 +112,7 @@ __Response__ `404`
 }
 ```
 
-__Response__ `500`
+__Ответ__ `500`
 ```json
 {
     "id": 7,
@@ -121,11 +121,11 @@ __Response__ `500`
 }
 ```
 
-#### Client
+#### Клиент
 
-> POST `/api/v1/clients` Create client
+> POST `/api/v1/clients` Создание клиента
 
-__Parameters__ `Body`
+__Парамерты__ `Body`
 ```json
 {
     "first_name": "Ivan",
@@ -139,7 +139,7 @@ __Parameters__ `Body`
 }
 ```
 
-__Response__ `202`
+__Ответ__ `202`
 ```json
 {
     "id": 8,
@@ -150,7 +150,7 @@ __Response__ `202`
 }
 ```
 
-__Response__ `422`
+__Ответ__ `422`
 ```json
 {
     "id": 9,
@@ -158,13 +158,13 @@ __Response__ `422`
     "message": "Unprocessable Entity",
     "errors": {
         "parameter": [
-            "Validation error message text"
+            "Текст сообщение ошибки валидации"
         ]
     }
 }
 ```
 
-__Response__ `500`
+__Ответ__ `500`
 ```json
 {
     "id": 10,
@@ -173,13 +173,13 @@ __Response__ `500`
 }
 ```
 
-> GET `/api/v1/clients/{id}` Get client info
+> GET `/api/v1/clients/{id}` Получение информации о клиенте
 
-__Parameters__ `Body`
+__Парамерты__ `Body`
 ```json
 ```
 
-__Response__ `200`
+__Ответ__ `200`
 ```json
 {
     "id": 11,
@@ -199,7 +199,7 @@ __Response__ `200`
 }
 ```
 
-__Response__ `404`
+__Ответ__ `404`
 ```json
 {
     "id": 12,
@@ -208,7 +208,7 @@ __Response__ `404`
 }
 ```
 
-__Response__ `500`
+__Ответ__ `500`
 ```json
 {
     "id": 13,
@@ -217,9 +217,9 @@ __Response__ `500`
 }
 ```
 
-> PUT `/api/v1/clients/{id}` Update client
+> PUT `/api/v1/clients/{id}` Обновление данных клиента
 
-__Parameters__ `Body`
+__Парамерты__ `Body`
 ```json
 {
     "first_name": "Ivan",
@@ -233,12 +233,12 @@ __Parameters__ `Body`
 }
 ```
 
-__Response__ `204`
+__Ответ__ `204`
 ```text
 NO_CONTENT
 ```
 
-__Response__ `404`
+__Ответ__ `404`
 ```json
 {
     "id": 14,
@@ -247,7 +247,7 @@ __Response__ `404`
 }
 ```
 
-__Response__ `422`
+__Ответ__ `422`
 ```json
 {
     "id": 15,
@@ -255,13 +255,13 @@ __Response__ `422`
     "message": "Unprocessable Entity",
     "errors": {
         "parameter": [
-            "Validation error message text"
+            "Текст сообщение ошибки валидации"
         ]
     }
 }
 ```
 
-__Response__ `500`
+__Ответ__ `500`
 ```json
 {
     "id": 16,
@@ -270,18 +270,18 @@ __Response__ `500`
 }
 ```
 
-> DELETE `/api/v1/clients/{id}` DELETE client
+> DELETE `/api/v1/clients/{id}` Удаление клиента
 
-__Parameters__ `Body`
+__Парамерты__ `Body`
 ```json
 ```
 
-__Response__ `204`
+__Ответ__ `204`
 ```text
 NO_CONTENT
 ```
 
-__Response__ `404`
+__Ответ__ `404`
 ```json
 {
     "id": 17,
@@ -290,7 +290,7 @@ __Response__ `404`
 }
 ```
 
-__Response__ `500`
+__Ответ__ `500`
 ```json
 {
     "id": 18,
@@ -299,11 +299,11 @@ __Response__ `500`
 }
 ```
 
-#### Search clients
+#### Поиск клиентов
 
-> GET `/api/v1/clients/search` Search clients
+> GET `/api/v1/clients/search` Поиск клиентов
 
-__Parameters__ `Body`
+__Парамерты__ `Body`
 ```json
 {
     "first_name": "Ivan",
@@ -313,7 +313,7 @@ __Parameters__ `Body`
 }
 ```
 
-__Response__ `200`
+__Ответ__ `200`
 ```json
 {
     "id": 19,
@@ -335,7 +335,7 @@ __Response__ `200`
 }
 ```
 
-__Response__ `404`
+__Ответ__ `404`
 ```json
 {
     "id": 20,
@@ -344,7 +344,7 @@ __Response__ `404`
 }
 ```
 
-__Response__ `422`
+__Ответ__ `422`
 ```json
 {
     "id": 21,
@@ -352,13 +352,13 @@ __Response__ `422`
     "message": "Unprocessable Entity",
     "errors": {
         "parameter": [
-            "Validation error message text"
+            "Текст сообщение ошибки валидации"
         ]
     }
 }
 ```
 
-__Response__ `500`
+__Ответ__ `500`
 ```json
 {
     "id": 22,
@@ -367,21 +367,21 @@ __Response__ `500`
 }
 ```
 
-## Developers info
+## Информация для разработчиков
 
-### User activity log
+### Логирование пользовательчких действий
 
-View DB table: `activity_log` 
+Информация доступна в таблице: `activity_log` 
 
-### Logger
+### Логирование
 
-Last parameter log is `activity_log_id`.
+В последнем параметре логов отображается `activity_log_id`.
 
-__Example__
+__Пример__
 ```text
 [06.08.2020 05:01:39] local.DEBUG: Emails: ["ivan@ivanov.com","ivan@ivanov.ru"] ['ActivityLog:236']
 ```
 
 ***
 
-> Eliseev AK
+> Елисеев АК
