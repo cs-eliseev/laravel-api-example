@@ -20,11 +20,6 @@ use Illuminate\Http\Response;
  */
 final class ClientController extends BaseController
 {
-   public function index(): JsonResponse
-   {
-       return $this->response('index');
-   }
-
     /**
      * Создание клиента.
      *
@@ -39,7 +34,7 @@ final class ClientController extends BaseController
     {
         $client = $service->create($request->getDto());
 
-        return $this->response(['id' => $client->id]);
+        return $this->response(['id' => $client->id], true, null, Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -88,7 +83,7 @@ final class ClientController extends BaseController
         $client = Client::find($id);
 
         if (!empty($client)) {
-            $status = Response::HTTP_OK;
+            $status = Response::HTTP_NO_CONTENT;
             $isSuccess = true;
             $service->update($client, $request->getDto());
         }
@@ -114,7 +109,7 @@ final class ClientController extends BaseController
         $client = Client::find($id);
 
         if (!empty($client)) {
-            $status = Response::HTTP_OK;
+            $status = Response::HTTP_NO_CONTENT;
             $isSuccess = true;
             $service->delete($client);
         }

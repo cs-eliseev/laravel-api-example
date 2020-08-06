@@ -36,7 +36,19 @@ abstract class BaseController extends Controller
         $errors = null,
         int $status = null
     ): JsonResponse {
-        $status = $status ?? ($isSuccess ? Response::HTTP_OK : Response::HTTP_INTERNAL_SERVER_ERROR);
+        if (is_null($status)) {
+            switch (true) {
+                case $isSuccess && empty($data):
+                    $status = Response::HTTP_NO_CONTENT;
+                    break;
+                case $isSuccess:
+                    $status = Response::HTTP_OK;
+                    break;
+                default:
+                    $status = Response::HTTP_INTERNAL_SERVER_ERROR;
+                    break;
+            }
+        }
 
         return response()->jsonFormat($isSuccess, $data, $errors, $status);
     }

@@ -23,7 +23,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api'], function() {
             Route::get('/', 'ClientController@index');
             Route::post('/', 'ClientController@create');
             Route::get('/{id}', 'ClientController@read');
-            Route::patch('/{id}', 'ClientController@update');
+            Route::put('/{id}', 'ClientController@update');
             Route::delete('/{id}', 'ClientController@delete');
         });
 

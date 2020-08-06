@@ -36,7 +36,7 @@ final class AuthController extends BaseController
         if ($authorization->login($request->getDto())) {
             ActivityLogComponent::updateUser();
 
-            $status = Response::HTTP_OK;
+            $status = Response::HTTP_ACCEPTED;
             $isSuccess = true;
             $data = [
                 'token' => $authorization->getToken(),
@@ -57,8 +57,8 @@ final class AuthController extends BaseController
      */
     public function logout(Authorization $authorization): JsonResponse
     {
-        $isSuccess = $authorization->logout();
+        $authorization->logout();
 
-        return $this->response(["message" => 'Logged out'], $isSuccess);
+        return $this->response();
     }
 }
