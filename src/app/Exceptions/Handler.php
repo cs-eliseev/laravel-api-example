@@ -70,6 +70,7 @@ class Handler extends ExceptionHandler
                     : Response::HTTP_NOT_FOUND;
                 break;
             case $exception instanceof ValidationException:
+                $error = $exception->validator->errors();
                 $code = Response::HTTP_UNPROCESSABLE_ENTITY;
                 break;
             case $exception instanceof \InvalidArgumentException:

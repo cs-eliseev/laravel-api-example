@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => \App\Configs\LangConfig::RU,
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => \App\Configs\LangConfig::EN,
 
     /*
     |--------------------------------------------------------------------------

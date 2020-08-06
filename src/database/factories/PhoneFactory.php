@@ -19,6 +19,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Phone::class, function (Faker $faker) {
     return [
-        'phone' => $faker->phoneNumber,
+        'phone' => $faker->numberBetween(1000000, 9999999999999999),
     ];
+
 });

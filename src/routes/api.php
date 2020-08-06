@@ -16,9 +16,17 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'v1', 'namespace' => 'Api'], function() {
     Route::post('auth/login', 'AuthController@login')->name('login');
 
-
     Route::group(['middleware' => 'auth:api'], function() {
-        Route::get('auth/logout', 'AuthController@logout')->name('logout');
-        Route::get('test', 'AuthController@test')->name('logout');
+        Route::get('auth/logout', 'AuthController@logout');
+
+        Route::prefix('clients')->group(function() {
+            Route::get('/', 'ClientController@index');
+            Route::post('/', 'ClientController@create');
+            Route::get('/{id}', 'ClientController@read');
+            Route::patch('/{id}', 'ClientController@update');
+            Route::delete('/{id}', 'ClientController@delete');
+        });
+
+        Route::get('search', 'SearchController@index');
     });
 });

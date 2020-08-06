@@ -19,8 +19,8 @@ class CreateClientsTable extends Migration
 
         Schema::create($model->getTable(), function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('first_name')->comment('Имя');
-            $table->string('last_name')->comment('Фамилия');
+            $table->string('first_name', 32)->comment('Имя');
+            $table->string('last_name', 32)->comment('Фамилия');
             $table->timestamp('created_at')->useCurrent()->comment('Время создания записи');
             $table->timestamp('updated_at')
                 ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))

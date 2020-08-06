@@ -14,7 +14,7 @@ use Illuminate\Support\Collection;
  * @description Клиент.
  *
  * @property int $id
- * @property string $fist_name
+ * @property string $first_name
  * @property string $last_name
  *
  * @property Collection|Email[] $emails

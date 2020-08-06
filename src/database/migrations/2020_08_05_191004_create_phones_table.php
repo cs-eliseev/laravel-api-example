@@ -20,7 +20,7 @@ class CreatePhonesTable extends Migration
         Schema::create($model->getTable(), function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('client_id')->comment('Клиент');
-            $table->string('phone')->comment('Телефон');
+            $table->string('phone', 32)->comment('Телефон');
             $table->timestamp('created_at')->useCurrent()->comment('Время создания записи');
             $table->timestamp('updated_at')
                 ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))

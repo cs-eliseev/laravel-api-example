@@ -107,7 +107,7 @@ git clone https://github.com/cs-eliseev/docker-for-laravel.git
 1. Build dependency
 
     ```shell
-    docker exec laravel-api-workspace bash -c 'composer update && php artisan key:generate'
+    docker exec laravel-api-workspace bash -c 'composer update && php artisan key:generate && php artisan migrate && php artisan passport:install --force'
     ```
 
 ### Laravel

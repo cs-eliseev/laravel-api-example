@@ -61,9 +61,4 @@ final class AuthController extends BaseController
 
         return $this->response(["message" => 'Logged out'], $isSuccess);
     }
-
-    public function test(): JsonResponse
-    {
-        return $this->response('test');
-    }
 }
