@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\SearchService;
 
 use App\Models\Client;
-use App\Models\Email;
-use App\Models\Phone;
 use App\Services\ClientService\ClientService;
 use App\Services\ClientService\Models\ClientServiceDto;
 use App\Services\ClientService\Models\ClientServiceEmailsDto;
@@ -12,7 +12,6 @@ use App\Services\ClientService\Models\ClientServicePhonesDto;
 use App\Services\SearchService\Models\SearchServiceDto;
 use App\Services\SearchService\SearchService;
 use Faker\Factory;
-use Faker\Generator;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
@@ -63,9 +62,12 @@ final class SearchServiceTest extends TestCase
     }
 
     /**
-     * @test
+     * * @test
      *
      * @dataProvider searchDataProvider
+     *
+     * @param array $input
+     * @param array $search
      */
     public function testSearchData(array $input, array $search): void
     {
@@ -85,7 +87,7 @@ final class SearchServiceTest extends TestCase
         $this->clientService->create($dtoCreate);
 
         $searchService = new SearchService();
-        $collection = $searchService->run(new SearchServiceDto($search['first_name'], $search['last_name'], $search['email'], $search['phone']));
+        $collection = $searchService->run(new SearchServiceDto($search['first_name'], $search['last_name'], $search['email'], (string) $search['phone']));
         $this->assertEquals(2, $collection->count());
 
         $collection->each(function ($client) use ($dtoCreate) {
