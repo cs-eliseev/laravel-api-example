@@ -10,7 +10,7 @@ use App\Helpers\ErrorMessage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-use Request;
+use Illuminate\Support\Facades\Request;
 
 /**
  * Class ActivityLog
@@ -31,7 +31,7 @@ final class ActivityLogComponent
      *
      * @return void
      */
-    public static function handler($description = null)
+    public static function handler($description = null): void
     {
         $userId = Auth::check() ? Auth::user()->id : null;
         $method = Request::method();
@@ -41,11 +41,18 @@ final class ActivityLogComponent
                 . ' ' . Request::path();
         }
 
+        $param = Request::all();
+
+        if (key_exists('password', $param)) {
+            $param['password'] = '******';
+        }
+
         $data = [
             'description'   => $description,
             'user_id'       => $userId,
             'method'        => $method,
             'route'         => Request::fullUrl(),
+            'extra'         => $param,
             'ip'            => Request::ip(),
         ];
 
@@ -60,6 +67,7 @@ final class ActivityLogComponent
             self::$activityLog->user_id = $data['user_id'];
             self::$activityLog->method = $data['method'];
             self::$activityLog->route = $data['route'];
+            self::$activityLog->extra = $data['extra'];
             self::$activityLog->ip = $data['ip'];
             self::$activityLog->description = $data['description'];
             self::$activityLog->save();
@@ -77,12 +85,25 @@ final class ActivityLogComponent
     }
 
     /**
-     * Вернуть модель журнала действий пользователя.
+     * Обновить пользоватея.
      */
     public static function updateUser(): void
     {
-        if (!empty(Auth::user())) {
+        if (!empty(self::$activityLog) && !empty(Auth::user())) {
             self::$activityLog->user()->associate(Auth::user());
+            self::$activityLog->save();
+        }
+    }
+
+    /**
+     * Установить код статуса ответа.
+     *
+     * @param int $status
+     */
+    public static function setStatusCode(int $status): void
+    {
+        if (!empty(self::$activityLog)) {
+            self::$activityLog->status = $status;
             self::$activityLog->save();
         }
     }

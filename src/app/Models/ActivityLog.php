@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $user_id
  * @property string $method
  * @property string $route
+ * @property int $status
+ * @property array extra
  * @property string $ip
  * @property string $description
  *
@@ -49,6 +51,8 @@ final class ActivityLog extends BaseModel
         'user_id'       => 'integer',
         'method'        => 'string',
         'route'         => 'string',
+        'status'        => 'integer',
+        'extra'         => 'array',
         'ip'            => 'ipAddress',
     ];
 
@@ -57,6 +61,8 @@ final class ActivityLog extends BaseModel
         'user_id'       => 'nullable|integer',
         'method'        => 'nullable|string',
         'route'         => 'nullable|url',
+        'status'        => 'nullable|integer',
+        'extra'         => 'nullable|array',
         'ip'            => 'nullable|ip',
     ];
 

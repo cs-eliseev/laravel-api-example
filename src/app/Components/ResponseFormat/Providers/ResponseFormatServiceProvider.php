@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Components\ResponseFormat\Providers;
 
+use App\Components\ActivityLog\ActivityLogComponent;
 use App\Components\ResponseFormat\Configs\ResponseFormatConfig;
 use App\Components\ResponseFormat\Models\ResponseFormatDto;
 use App\Components\ResponseFormat\ResponseFormat;
@@ -40,7 +41,16 @@ final class ResponseFormatServiceProvider extends ServiceProvider
             $errors = null,
             int $status = Response::HTTP_OK
         ) use ($factory) {
-            if (empty($data)) $data = Response::$statusTexts[$status] ?? null;
+            if (is_null(ActivityLogComponent::getModel())) {
+                ActivityLogComponent::handler();
+            }
+            if (!empty($status)) {
+                ActivityLogComponent::setStatusCode($status);
+            }
+
+            if (empty($data)) {
+                $data = Response::$statusTexts[$status] ?? null;
+            }
 
             $dto = new ResponseFormatDto($success, $data, $errors);
             $responseFormat = new ResponseFormat($dto);
