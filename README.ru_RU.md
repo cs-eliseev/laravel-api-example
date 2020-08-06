@@ -117,6 +117,17 @@ UnitTest для сервисов:
    ./src/coverage_report/index.html
    ```
 
+## Настройки
+
+### MySQL конфиг
+
+```text
+MYSQL_DATABASE=laravel_db
+MYSQL_USER=laravel_user
+MYSQL_PASSWORD=123456
+MYSQL_PORT=6004
+```
+
 ***
 
 > Елисеев АК

@@ -117,6 +117,17 @@ UNIT test services:
    ./src/coverage_report/index.html
    ```
 
+## Settings
+
+### MySQL config
+
+```text
+MYSQL_DATABASE=laravel_db
+MYSQL_USER=laravel_user
+MYSQL_PASSWORD=123456
+MYSQL_PORT=6004
+```
+
 ***
 
 > Eliseev AK
