@@ -23,7 +23,7 @@ final class ClientServiceEmailsDto
      *
      * @param array|null $emails
      */
-    public function __construct(?array $emails)
+    public function __construct(?array $emails = null)
     {
         $this->emails = $emails;
     }

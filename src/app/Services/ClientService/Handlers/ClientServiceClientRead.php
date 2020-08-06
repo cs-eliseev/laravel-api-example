@@ -28,8 +28,8 @@ final class ClientServiceClientRead
         return new ClientServiceDto(
             $client->first_name,
             $client->last_name,
-            new ClientServiceEmailsDto($client->emails->pluck('email')->toArray()),
-            new ClientServicePhonesDto($client->phones->pluck('phone')->toArray())
+            new ClientServiceEmailsDto($client->emails()->pluck('email')->toArray()),
+            new ClientServicePhonesDto($client->phones()->pluck('phone')->toArray())
         );
     }
 }

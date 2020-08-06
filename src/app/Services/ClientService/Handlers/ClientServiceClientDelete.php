@@ -17,24 +17,19 @@ final class ClientServiceClientDelete
      * Запуск процесса.
      *
      * @param Client $client
-     * @param bool $isForceDelete
      *
      * @throws \Exception
      */
-    public function run(Client $client, bool $isForceDelete = false): void
+    public function run(Client $client): void
     {
         if (!empty($client)) {
             $emailsService = new ClientServiceEmailsDelete();
-            $emailsService->run($client, $isForceDelete);
+            $emailsService->run($client);
 
             $phoneService = new ClientServicePhonesDelete();
-            $phoneService->run($client, $isForceDelete);
+            $phoneService->run($client);
 
-            if ($isForceDelete) {
-                $client->forceDelete();
-            } else {
-                $client->delete();
-            }
+            $client->delete();
         }
     }
 }

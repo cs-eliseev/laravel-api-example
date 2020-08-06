@@ -21,7 +21,7 @@ final class ClientServicePhonesDto
      *
      * @param array|null $phones
      */
-    public function __construct(?array $phones)
+    public function __construct(?array $phones = null)
     {
         $this->phones = $phones;
     }
