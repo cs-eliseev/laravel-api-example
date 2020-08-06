@@ -60,66 +60,6 @@ final class SearchServiceClientDto
     }
 
     /**
-     * Получить имя.
-     *
-     * @return string
-     */
-    public function getFirstName(): string
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * Получить фамилию.
-     *
-     * @return string
-     */
-    public function getLastName(): string
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * Получить список email адресов.
-     *
-     * @return array|null
-     */
-    public function getEmails(): ?array
-    {
-        return $this->emails->getEmails();
-    }
-
-    /**
-     * Получить список телефонных номеров.
-     *
-     * @return array|null
-     */
-    public function getPhones(): ?array
-    {
-        return $this->phones->getPhones();
-    }
-
-    /**
-     * Получить модель данных email адресов.
-     *
-     * @return SearchServiceEmailsDto
-     */
-    public function getEmailsDto(): SearchServiceEmailsDto
-    {
-        return $this->emails;
-    }
-
-    /**
-     * Получить модель данных телефонных номеров.
-     *
-     * @return SearchServicePhonesDto
-     */
-    public function getPhonesDto(): SearchServicePhonesDto
-    {
-        return $this->phones;
-    }
-
-    /**
      * Вернуть ввиде массива.
      *
      * @return array
