@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Services\SearchService\Models;
+namespace App\Services\SearchService\Handlers\Query\Models;
 
 /**
  * Class ClientServiceEmailDto

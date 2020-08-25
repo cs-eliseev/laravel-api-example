@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Requests;
 
 use App\Configs\ValidationConfig;
-use App\Services\SearchService\Models\SearchServiceDto;
+use App\Services\SearchService\Handlers\Query\Models\SearchServiceQueryDto;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
@@ -43,11 +43,11 @@ class SearchRequest extends FormRequest
     /**
      * Получить модель создания заказа.
      *
-     * @return SearchServiceDto
+     * @return SearchServiceQueryDto
      */
-    public function getDto(): SearchServiceDto
+    public function getDto(): SearchServiceQueryDto
     {
-        return new SearchServiceDto(
+        return new SearchServiceQueryDto(
             $this->first_name,
             $this->last_name,
             $this->email,

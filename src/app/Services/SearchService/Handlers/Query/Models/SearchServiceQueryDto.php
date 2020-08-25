@@ -2,14 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Services\SearchService\Models;
+namespace App\Services\SearchService\Handlers\Query\Models;
+
+use App\Services\SearchService\Interfaces\SearchServiceDTOInterface;
 
 /**
- * Class SearchServiceDto
+ * Class SearchServiceQueryDto
  *
  * @description Модель данных для поиска.
  */
-final class SearchServiceDto
+final class SearchServiceQueryDto implements SearchServiceDTOInterface
 {
     /**
      * Имя.
@@ -40,7 +42,7 @@ final class SearchServiceDto
     private ?string $phone;
 
     /**
-     * SearchServiceDto constructor.
+     * SearchServiceQueryDto constructor.
      *
      * @param string|null $firstName
      * @param string|null $lastName

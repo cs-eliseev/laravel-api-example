@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\SearchRequest;
-use App\Models\Client;
-use App\Services\SearchService\SearchService;
+use App\Services\SearchService\Interfaces\SearchServiceFactory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
@@ -21,13 +20,13 @@ final class SearchController extends BaseController
      * Поиск.
      *
      * @param SearchRequest $request
-     * @param SearchService $service
+     * @param SearchServiceFactory $service
      *
      * @return JsonResponse
      *
      * @throws \Throwable
      */
-    public function index(SearchRequest $request, SearchService $service): JsonResponse
+    public function index(SearchRequest $request, SearchServiceFactory $service): JsonResponse
     {
         $status = Response::HTTP_OK;
         $isSuccess = true;
