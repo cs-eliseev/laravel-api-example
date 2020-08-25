@@ -9,7 +9,7 @@ use App\Services\ClientService\ClientService;
 use App\Services\ClientService\Models\ClientServiceDto;
 use App\Services\ClientService\Models\ClientServiceEmailsDto;
 use App\Services\ClientService\Models\ClientServicePhonesDto;
-use App\Services\SearchService\Handlers\Query\Models\SearchServiceQueryDto;
+use App\Services\SearchService\Handlers\Query\Models\SearchServiceQueryArgDto;
 use App\Services\SearchService\Handlers\Query\SearchServiceQuery;
 use Faker\Factory;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -57,7 +57,7 @@ final class SearchServiceTest extends TestCase
     {
         $input = $this->generateInputData();
 
-        $collection = $this->searchService->run(new SearchServiceQueryDto($input['first_name'], $input['last_name'], null, null));
+        $collection = $this->searchService->run(new SearchServiceQueryArgDto($input['first_name'], $input['last_name'], null, null));
         $this->assertEquals(0, $collection->count());
     }
 
@@ -87,7 +87,7 @@ final class SearchServiceTest extends TestCase
         $this->clientService->create($dtoCreate);
 
         $searchService = new SearchServiceQuery();
-        $collection = $searchService->run(new SearchServiceQueryDto($search['first_name'], $search['last_name'], $search['email'], (string) $search['phone']));
+        $collection = $searchService->run(new SearchServiceQueryArgDto($search['first_name'], $search['last_name'], $search['email'], (string) $search['phone']));
         $this->assertEquals(2, $collection->count());
 
         $collection->each(function ($client) use ($dtoCreate) {

@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Requests;
 
 use App\Configs\ValidationConfig;
+use App\Filters\ClientFilter;
+use App\Models\Client;
+use App\Services\SearchService\Handlers\Query\Models\SearchServiceQueryArgDto;
 use App\Services\SearchService\Handlers\Query\Models\SearchServiceQueryDto;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -48,10 +51,9 @@ class SearchRequest extends FormRequest
     public function getDto(): SearchServiceQueryDto
     {
         return new SearchServiceQueryDto(
-            $this->first_name,
-            $this->last_name,
-            $this->email,
-            $this->phone
+            Client::class,
+            ClientFilter::class,
+            $this->toArray()
         );
     }
 }

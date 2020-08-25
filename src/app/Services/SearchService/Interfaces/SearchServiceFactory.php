@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Services\SearchService\Interfaces;
 
 /**
- * Class SearchServiceFactory
+ * Interface SearchServiceFactory
  *
  * @description Адаптер получения реализации поиска.
  */

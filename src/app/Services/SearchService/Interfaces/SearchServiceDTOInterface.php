@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Services\SearchService\Interfaces;
 
 /**
- * Class SearchServiceDTOInterface
+ * Interface SearchServiceDTOInterface
  *
  * @description Параметры поиска.
  */

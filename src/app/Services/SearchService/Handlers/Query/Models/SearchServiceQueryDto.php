@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services\SearchService\Handlers\Query\Models;
 
 use App\Services\SearchService\Interfaces\SearchServiceDTOInterface;
+use Illuminate\Database\Query\Builder;
 
 /**
  * Class SearchServiceQueryDto
@@ -14,86 +15,67 @@ use App\Services\SearchService\Interfaces\SearchServiceDTOInterface;
 final class SearchServiceQueryDto implements SearchServiceDTOInterface
 {
     /**
-     * Имя.
+     * Конструктор запросов.
      *
-     * @var string|null $firstName
+     * @var Builder $builder
      */
-    private ?string $firstName;
+    protected $builder;
 
     /**
-     * Фамилия.
+     * Модель фильтра.
      *
-     * @var string|null $lastName
+     * @var string $driver
      */
-    private ?string $lastName;
+    protected string $driver;
 
     /**
-     * email адрес.
+     * Параметры фильтрации.
      *
-     * @var string|null $email
+     * @var array $filters
      */
-    private ?string $email;
-
-    /**
-     * Телефонный номер.
-     *
-     * @var string|null $phones
-     */
-    private ?string $phone;
+    protected array $filters;
 
     /**
      * SearchServiceQueryDto constructor.
      *
-     * @param string|null $firstName
-     * @param string|null $lastName
-     * @param string|null $email
-     * @param string|null $phone
+     * @param Builder $builder
+     * @param string $driver
+     * @param null|array $filters
      */
-    public function __construct(?string $firstName, ?string $lastName, ?string $email, ?string $phone)
+    public function __construct($builder, string $driver, ?array $filters = [])
     {
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->email = $email;
-        $this->phone = $phone;
+        $this->builder = $builder;
+        $this->driver = $driver;
+        $this->filters = $filters;
     }
 
     /**
-     * Получить имя.
+     * Получить конструктор запросов.
      *
-     * @return string|null
+     * @return Builder
      */
-    public function getFirstName(): ?string
+    public function getBuilder()
     {
-        return $this->firstName;
+        return $this->builder;
     }
 
     /**
-     * Получить фамилию.
+     * Получить механизм фильтрации.
      *
-     * @return string|null
+     * @return string
      */
-    public function getLastName(): ?string
+    public function getDriver(): string
     {
-        return $this->lastName;
+        return $this->driver;
     }
 
     /**
-     * Получить email адрес.
+     * Параметры фильтрации.
      *
-     * @return string|null
+     * @return array
      */
-    public function getEmail(): ?string
+    public function getFilters(): array
     {
-        return $this->email;
-    }
-
-    /**
-     * Получить телефонный номер.
-     *
-     * @return string|null
-     */
-    public function getPhone(): ?string
-    {
-        return $this->phone;
+        return $this->filters;
     }
 }
