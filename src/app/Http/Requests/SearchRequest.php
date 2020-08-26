@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Requests;
 
 use App\Configs\ValidationConfig;
-use App\Filters\ClientFilter;
+use App\Filters\ClientFilterQuery;
 use App\Models\Client;
-use App\Services\SearchService\Handlers\Query\Models\SearchServiceQueryArgDto;
-use App\Services\SearchService\Handlers\Query\Models\SearchServiceQueryDto;
+use App\Components\FilterQuery\Models\FilterQueryDto;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
@@ -46,13 +45,13 @@ class SearchRequest extends FormRequest
     /**
      * Получить модель создания заказа.
      *
-     * @return SearchServiceQueryDto
+     * @return FilterQueryDto
      */
-    public function getDto(): SearchServiceQueryDto
+    public function getDto(): FilterQueryDto
     {
-        return new SearchServiceQueryDto(
+        return new FilterQueryDto(
             Client::class,
-            ClientFilter::class,
+            ClientFilterQuery::class,
             $this->toArray()
         );
     }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Filters;
 
 use App\Models\Client;
-use App\Services\SearchService\Handlers\Query\Interfaces\SearchServiceQueryFilterInterface;
+use App\Components\FilterQuery\Interfaces\FilterQueryInterface;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
@@ -14,7 +14,7 @@ use Illuminate\Support\Collection;
  *
  * @description Фильтрация пользователей.
  */
-final class ClientFilter implements SearchServiceQueryFilterInterface
+final class ClientFilterQuery implements FilterQueryInterface
 {
     /**
      * Конструктор запросов.
@@ -110,6 +110,4 @@ final class ClientFilter implements SearchServiceQueryFilterInterface
             $query->where('phone', '=', $phone);
         });
     }
-
-
 }

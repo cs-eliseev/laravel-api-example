@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Services\SearchService\Handlers\Query\Models;
+namespace App\Components\FilterQuery\Models;
 
 use App\Services\SearchService\Interfaces\SearchServiceDTOInterface;
 use Illuminate\Database\Query\Builder;
 
 /**
- * Class SearchServiceQueryDto
+ * Class FilterQueryDto
  *
  * @description Модель данных для поиска.
  */
-final class SearchServiceQueryDto implements SearchServiceDTOInterface
+final class FilterQueryDto implements SearchServiceDTOInterface
 {
     /**
      * Конструктор запросов.

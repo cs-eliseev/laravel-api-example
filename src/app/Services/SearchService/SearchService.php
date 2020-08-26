@@ -8,7 +8,7 @@ use App\Services\SearchService\Interfaces\SearchServiceFactory;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class SearchServiceFacade
+ * Class SearchService
  *
  * @description Фасад для удобной работы сервиса.
  */

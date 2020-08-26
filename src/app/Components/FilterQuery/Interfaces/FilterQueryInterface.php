@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Services\SearchService\Handlers\Query\Interfaces;
+namespace App\Components\FilterQuery\Interfaces;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 /**
- * Interface SearchServiceQueryFilterInterface
+ * Interface FilterQueryInterface
  *
  * @description Интерфейс построителя фильтров.
  */
-interface SearchServiceQueryFilterInterface
+interface FilterQueryInterface
 {
     /**
      * Список отношений.

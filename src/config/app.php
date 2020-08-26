@@ -176,7 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         \App\Components\ResponseFormat\Providers\ResponseFormatServiceProvider::class,
-        \App\Services\SearchService\SearchServiceServiceProvider::class,
+        \App\Services\SearchService\SearchServiceProvider::class,
     ],
 
     /*

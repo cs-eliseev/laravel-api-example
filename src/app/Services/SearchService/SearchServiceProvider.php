@@ -10,11 +10,11 @@ use App\Services\SearchService\Interfaces\SearchServiceFactory;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * Class SearchServiceServiceProvider
+ * Class SearchServiceProvider
  *
  * @description Инициализация сервиса.
  */
-final class SearchServiceServiceProvider extends ServiceProvider
+final class SearchServiceProvider extends ServiceProvider
 {
     /**
      * Отложенная загрузка.
@@ -48,9 +48,9 @@ final class SearchServiceServiceProvider extends ServiceProvider
     /**
      * Инициализация конфига.
      *
-     * @return SearchServiceServiceProvider
+     * @return SearchServiceProvider
      */
-    private function registerConfig(): SearchServiceServiceProvider
+    private function registerConfig(): SearchServiceProvider
     {
         $this->app['config']->set(
             SearchServiceBaseConfig::DEFAULT_KEY,
@@ -66,9 +66,9 @@ final class SearchServiceServiceProvider extends ServiceProvider
     /**
      * Устанавливаем псевдоним для вызова.
      *
-     * @return SearchServiceServiceProvider
+     * @return SearchServiceProvider
      */
-    private function registerAliases(): SearchServiceServiceProvider
+    private function registerAliases(): SearchServiceProvider
     {
         $this->app->alias(SearchService::class, SearchServiceBaseConfig::ALIAS);
 
@@ -78,9 +78,9 @@ final class SearchServiceServiceProvider extends ServiceProvider
     /**
      * Подключение фабрики.
      *
-     * @return SearchServiceServiceProvider
+     * @return SearchServiceProvider
      */
-    private function registerFactory(): SearchServiceServiceProvider
+    private function registerFactory(): SearchServiceProvider
     {
         $this->app->singleton(SearchServiceFactory::class, function ($app) {
             return new SearchServiceManager($app);
